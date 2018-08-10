@@ -59,6 +59,15 @@ namespace TennisGameTdd
             var actual = _sut.Score();
             Assert.AreEqual("Love Thirty", actual);
         }
+        
+        [TestMethod]
+        public void FifteenAll()
+        {
+            _sut.HomePlayerScored();
+            _sut.AwayPlayerScored();
+            var actual = _sut.Score();
+            Assert.AreEqual("Fifteen All", actual);
+        }
 
         private void GivenAwayPlayerScoreTimes(int times)
         {
@@ -87,6 +96,7 @@ namespace TennisGameTdd
         {
             _scoreMappings = new Dictionary<int, string>
             {
+                {0, "Love"},
                 {1, "Fifteen"},
                 {2, "Thirty"},
                 {3, "Forty"}
@@ -95,14 +105,14 @@ namespace TennisGameTdd
 
         public string Score()
         {
-            if (_awayPlayerScore > 0)
+            if (_homePlayerScore == 1 && _awayPlayerScore == 1)
             {
-                return $"Love {_scoreMappings[_awayPlayerScore]}";
+                return "Fifteen All";
             }
 
-            if (_homePlayerScore > 0)
+            if (_homePlayerScore > 0 || _awayPlayerScore > 0)
             {
-                return $"{_scoreMappings[_homePlayerScore]} Love";
+                return $"{_scoreMappings[_homePlayerScore]} {_scoreMappings[_awayPlayerScore]}";
             }
 
             return "Love All";
