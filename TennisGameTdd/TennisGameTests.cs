@@ -35,13 +35,22 @@ namespace TennisGameTdd
             var actual = _sut.Score();
             Assert.AreEqual("Thirty Love", actual);
         }
-        
+
         [TestMethod]
         public void LoveFifteen()
         {
             _sut.AwayPlayerScored();
             var actual = _sut.Score();
             Assert.AreEqual("Love Fifteen", actual);
+        }
+
+        [TestMethod]
+        public void LoveThirty()
+        {
+            _sut.AwayPlayerScored();
+            _sut.AwayPlayerScored();
+            var actual = _sut.Score();
+            Assert.AreEqual("Love Thirty", actual);
         }
 
         private void GivenHomePlayerScoreTimes(int times)
@@ -70,15 +79,21 @@ namespace TennisGameTdd
 
         public string Score()
         {
+            if (_awayPlayerScore == 2)
+            {
+                return "Love Thirty";
+            }
+
             if (_awayPlayerScore == 1)
             {
                 return "Love Fifteen";
             }
-            
+
             if (_homePlayerScore > 0)
             {
                 return $"{_scoreMappings[_homePlayerScore]} Love";
             }
+
             return "Love All";
         }
 
