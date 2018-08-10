@@ -104,6 +104,15 @@ namespace TennisGameTdd
             var actual = _sut.Score();
             Assert.AreEqual("John Adv", actual);
         }
+        
+        [TestMethod]
+        public void AwayAdv()
+        {
+            GivenHomePlayerScoreTimes(times: 3);
+            GivenAwayPlayerScoreTimes(times: 4);
+            var actual = _sut.Score();
+            Assert.AreEqual("Tom Adv", actual);
+        }
 
         private void GivenAwayPlayerScoreTimes(int times)
         {
@@ -154,6 +163,11 @@ namespace TennisGameTdd
             
             if (_homePlayerScore >= 3 && _awayPlayerScore >= 3)
             {
+                if (_awayPlayerScore - _homePlayerScore == 1)
+                {
+                    return "Tom Adv";
+                }
+                
                 if (_homePlayerScore - _awayPlayerScore == 1)
                 {
                     return "John Adv";
