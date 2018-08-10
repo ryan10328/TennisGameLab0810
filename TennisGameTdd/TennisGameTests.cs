@@ -30,10 +30,17 @@ namespace TennisGameTdd
         [TestMethod]
         public void ThirtyLove()
         {
-            _sut.HomePlayerScored();
-            _sut.HomePlayerScored();
+            GivenHomePlayerScoreTimes(2);
             var actual = _sut.Score();
             Assert.AreEqual("Thirty Love", actual);
+        }
+
+        private void GivenHomePlayerScoreTimes(int times)
+        {
+            for (int i = 0; i < times; i++)
+            {
+                _sut.HomePlayerScored();
+            }
         }
     }
 
