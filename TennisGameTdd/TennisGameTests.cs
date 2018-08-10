@@ -6,8 +6,19 @@ namespace TennisGameTdd
     public class TennisGameTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void LoveAll()
         {
+            var sut = new TennisGame();
+            var actual = sut.Score();
+            Assert.AreEqual("Love All", actual);
+        }
+    }
+
+    public class TennisGame
+    {
+        public string Score()
+        {
+            return "Love All";
         }
     }
 }
