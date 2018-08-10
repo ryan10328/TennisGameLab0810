@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TennisGameTdd
@@ -18,7 +19,7 @@ namespace TennisGameTdd
             var actual = _sut.Score();
             Assert.AreEqual("Love All", actual);
         }
-        
+
         [TestMethod]
         public void FifteenLove()
         {
@@ -26,7 +27,7 @@ namespace TennisGameTdd
             var actual = _sut.Score();
             Assert.AreEqual("Fifteen Love", actual);
         }
-        
+
         [TestMethod]
         public void ThirtyLove()
         {
@@ -47,16 +48,22 @@ namespace TennisGameTdd
     public class TennisGame
     {
         private int _homePlayerScore;
+        private readonly Dictionary<int, string> _scoreMappings;
+
+        public TennisGame()
+        {
+            _scoreMappings = new Dictionary<int, string>
+            {
+                {1, "Fifteen"},
+                {2, "Thirty"}
+            };
+        }
 
         public string Score()
         {
-            if (_homePlayerScore == 2)
+            if (_homePlayerScore > 0)
             {
-                return "Thirty Love";
-            }
-            if (_homePlayerScore == 1)
-            {
-                return "Fifteen Love";
+                return $"{_scoreMappings[_homePlayerScore]} Love";
             }
             return "Love All";
         }
