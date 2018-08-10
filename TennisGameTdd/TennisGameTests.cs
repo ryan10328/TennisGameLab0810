@@ -96,6 +96,14 @@ namespace TennisGameTdd
             Assert.AreEqual("Deuce", actual);
         }
         
+        [TestMethod]
+        public void HomeAdv()
+        {
+            GivenHomePlayerScoreTimes(times: 4);
+            GivenAwayPlayerScoreTimes(times: 3);
+            var actual = _sut.Score();
+            Assert.AreEqual("John Adv", actual);
+        }
 
         private void GivenAwayPlayerScoreTimes(int times)
         {
@@ -143,11 +151,20 @@ namespace TennisGameTdd
                 return $"{_scoreMappings[_homePlayerScore]} All";
             }
 
+            
+            if (_homePlayerScore >= 3 && _awayPlayerScore >= 3)
+            {
+                if (_homePlayerScore - _awayPlayerScore == 1)
+                {
+                    return "John Adv";
+                }
+            }
+
             if (_homePlayerScore > 0 || _awayPlayerScore > 0)
             {
                 return $"{_scoreMappings[_homePlayerScore]} {_scoreMappings[_awayPlayerScore]}";
             }
-
+            
             return "Love All";
         }
 
