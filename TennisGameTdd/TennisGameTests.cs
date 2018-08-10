@@ -36,7 +36,7 @@ namespace TennisGameTdd
             var actual = _sut.Score();
             Assert.AreEqual("Thirty Love", actual);
         }
-        
+
         [TestMethod]
         public void FortyLove()
         {
@@ -60,7 +60,7 @@ namespace TennisGameTdd
             var actual = _sut.Score();
             Assert.AreEqual("Love Thirty", actual);
         }
-        
+
         [TestMethod]
         public void FifteenAll()
         {
@@ -69,7 +69,7 @@ namespace TennisGameTdd
             var actual = _sut.Score();
             Assert.AreEqual("Fifteen All", actual);
         }
-        
+
         [TestMethod]
         public void ThirtyAll()
         {
@@ -78,7 +78,7 @@ namespace TennisGameTdd
             var actual = _sut.Score();
             Assert.AreEqual("Thirty All", actual);
         }
-        
+
         [TestMethod]
         public void Deuce()
         {
@@ -87,7 +87,7 @@ namespace TennisGameTdd
             var actual = _sut.Score();
             Assert.AreEqual("Deuce", actual);
         }
-        
+
         [TestMethod]
         public void Deuce_4_4()
         {
@@ -96,7 +96,7 @@ namespace TennisGameTdd
             var actual = _sut.Score();
             Assert.AreEqual("Deuce", actual);
         }
-        
+
         [TestMethod]
         public void HomeAdv()
         {
@@ -105,7 +105,7 @@ namespace TennisGameTdd
             var actual = _sut.Score();
             Assert.AreEqual("John Adv", actual);
         }
-        
+
         [TestMethod]
         public void AwayAdv()
         {
@@ -114,7 +114,7 @@ namespace TennisGameTdd
             var actual = _sut.Score();
             Assert.AreEqual("Tom Adv", actual);
         }
-        
+
         [TestMethod]
         public void HomeWin()
         {
@@ -166,10 +166,10 @@ namespace TennisGameTdd
                 {
                     return "Deuce";
                 }
-                
+
                 return $"{_scoreMappings[_homePlayerScore]} All";
             }
-            
+
             if (_homePlayerScore >= 3 && _awayPlayerScore >= 3)
             {
                 var advPlayer = _homePlayerScore > _awayPlayerScore ? "John" : "Tom";
@@ -177,15 +177,11 @@ namespace TennisGameTdd
                 {
                     return $"{advPlayer} Adv";
                 }
+
                 return $"{advPlayer} Win";
             }
 
-            if (_homePlayerScore > 0 || _awayPlayerScore > 0)
-            {
-                return $"{_scoreMappings[_homePlayerScore]} {_scoreMappings[_awayPlayerScore]}";
-            }
-            
-            return "Love All";
+            return $"{_scoreMappings[_homePlayerScore]} {_scoreMappings[_awayPlayerScore]}";
         }
 
         public void HomePlayerScored()
