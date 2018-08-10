@@ -68,6 +68,7 @@ namespace TennisGameTdd
             var actual = _sut.Score();
             Assert.AreEqual("Fifteen All", actual);
         }
+        
         [TestMethod]
         public void ThirtyAll()
         {
@@ -75,6 +76,15 @@ namespace TennisGameTdd
             GivenAwayPlayerScoreTimes(times: 2);
             var actual = _sut.Score();
             Assert.AreEqual("Thirty All", actual);
+        }
+        
+        [TestMethod]
+        public void Deuce()
+        {
+            GivenHomePlayerScoreTimes(times: 3);
+            GivenAwayPlayerScoreTimes(times: 3);
+            var actual = _sut.Score();
+            Assert.AreEqual("Deuce", actual);
         }
         
 
@@ -114,6 +124,11 @@ namespace TennisGameTdd
 
         public string Score()
         {
+            if (_homePlayerScore == 3 && _awayPlayerScore == 3)
+            {
+                return "Deuce";
+            }
+            
             if (_homePlayerScore == _awayPlayerScore)
             {
                 return $"{_scoreMappings[_homePlayerScore]} All";
