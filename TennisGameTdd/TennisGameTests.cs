@@ -5,21 +5,35 @@ namespace TennisGameTdd
     [TestClass]
     public class TennisGameTests
     {
+        private TennisGame _sut;
+
+        public TennisGameTests()
+        {
+            _sut = new TennisGame();
+        }
+
         [TestMethod]
         public void LoveAll()
         {
-            var sut = new TennisGame();
-            var actual = sut.Score();
+            var actual = _sut.Score();
             Assert.AreEqual("Love All", actual);
         }
         
         [TestMethod]
         public void FifteenLove()
         {
-            var sut = new TennisGame();
-            sut.HomePlayerScored();
-            var actual = sut.Score();
+            _sut.HomePlayerScored();
+            var actual = _sut.Score();
             Assert.AreEqual("Fifteen Love", actual);
+        }
+        
+        [TestMethod]
+        public void ThirtyLove()
+        {
+            _sut.HomePlayerScored();
+            _sut.HomePlayerScored();
+            var actual = _sut.Score();
+            Assert.AreEqual("Thirty Love", actual);
         }
     }
 
@@ -29,6 +43,10 @@ namespace TennisGameTdd
 
         public string Score()
         {
+            if (_homePlayerScore == 2)
+            {
+                return "Thirty Love";
+            }
             if (_homePlayerScore == 1)
             {
                 return "Fifteen Love";
