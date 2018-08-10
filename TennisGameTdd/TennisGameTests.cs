@@ -68,6 +68,15 @@ namespace TennisGameTdd
             var actual = _sut.Score();
             Assert.AreEqual("Fifteen All", actual);
         }
+        [TestMethod]
+        public void ThirtyAll()
+        {
+            GivenHomePlayerScoreTimes(times: 2);
+            GivenAwayPlayerScoreTimes(times: 2);
+            var actual = _sut.Score();
+            Assert.AreEqual("Thirty All", actual);
+        }
+        
 
         private void GivenAwayPlayerScoreTimes(int times)
         {
@@ -105,6 +114,11 @@ namespace TennisGameTdd
 
         public string Score()
         {
+            if (_homePlayerScore == 2 && _awayPlayerScore == 2)
+            {
+                return "Thirty All";
+            }
+            
             if (_homePlayerScore == 1 && _awayPlayerScore == 1)
             {
                 return "Fifteen All";
