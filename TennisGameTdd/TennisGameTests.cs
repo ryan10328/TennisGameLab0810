@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -163,14 +164,10 @@ namespace TennisGameTdd
             
             if (_homePlayerScore >= 3 && _awayPlayerScore >= 3)
             {
-                if (_awayPlayerScore - _homePlayerScore == 1)
+                if (Math.Abs(_homePlayerScore - _awayPlayerScore) == 1)
                 {
-                    return "Tom Adv";
-                }
-                
-                if (_homePlayerScore - _awayPlayerScore == 1)
-                {
-                    return "John Adv";
+                    var advPlayer = _homePlayerScore > _awayPlayerScore ? "John" : "Tom";
+                    return $"{advPlayer} Adv";
                 }
             }
 
